@@ -9,6 +9,7 @@ import com.diogo.dto.CourseDTO;
 import com.diogo.dto.LessonDTO;
 import com.diogo.enums.Category;
 import com.diogo.model.Course;
+import com.diogo.model.Lesson;
 
 @Component
 public class CourseMapper {
@@ -45,6 +46,18 @@ public class CourseMapper {
         }
         course.setName(courseDTO.name());
         course.setCategory(convertCategoryValue(courseDTO.category()));
+
+        List<Lesson> lessons = courseDTO.lessons().stream().map(lessonDTO -> {
+            var lesson = new Lesson();
+            lesson.setId(lessonDTO.id());
+            lesson.setName(lessonDTO.name());
+            lesson.setYoutubeUrl(lessonDTO.youtubeUrl());
+            lesson.setCourse(course);
+            return lesson;
+        }).collect(Collectors.toList());
+        course.setLessons(lessons);
+        
+
         return course;
     }
 

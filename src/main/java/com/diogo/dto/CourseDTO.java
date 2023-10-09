@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.diogo.model.Lesson;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotBlank;
